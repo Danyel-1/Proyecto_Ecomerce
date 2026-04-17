@@ -1,14 +1,11 @@
 import React  from 'react'
-import Buscador from './components/buscador'
+import PatoLibre from './pages/PatoLibre'
 
 function App() {
 
   return (
     <>
-      <header>
-        <Buscador/>
-      </header>
-      
+      <PatoLibre/>
     </>
   )
 }
