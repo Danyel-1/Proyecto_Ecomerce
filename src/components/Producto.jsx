@@ -1,18 +1,25 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-const Producto = ({el}) => {
-  const { images, price, slug, title} = el
+const Producto = ({el, idProducto}) => {
+  const { images, price, slug, title, id} = el
+
+  const handleClick   = ()=>{
+    idProducto(id);
+  }
 
   return (
-    <article className='producto'>
-      <img src={images[0]} alt={slug} />
+    <Link to='/detalle-producto/:id'>
+      <article onClick={handleClick} className='producto'>
+        <img src={images[0]} alt={slug} />
 
-      <div className='description'>  
-        <h3>{title}</h3>
-        <p>Price: ${price}.00</p>
-      </div>
-        <button>ADD TO CAR</button>
-    </article>
+        <div className='description'>  
+          <h3>{title}</h3>
+          <p>Price: ${price}.00</p>
+        </div>
+          <button>ADD TO CAR</button>
+      </article>
+    </Link>
   )
 }
 

@@ -1,19 +1,21 @@
 import React from 'react'
 import Buscador from './buscador'
+import { Link } from 'react-router-dom'
 
 const Header = ({DetallesInfo}) => {
 
   return (
     <header>
-        <picture>
-            <img src='./src/imgs/patoLogo.png' alt="Logotipo empresa" />
-        </picture>
+        <Link to='/'>
+          <picture>
+              <img src='./src/imgs/patoLogo.png' alt="Logotipo empresa" />
+          </picture>
+        </Link>
 
         <Buscador DetallesInfo={DetallesInfo}/>
 
         <button>☰</button>
-
-        <button>🛒</button>
+        <Link to="/carrito">🛒</Link>
     </header>
   )
 }
