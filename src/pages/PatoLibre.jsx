@@ -26,13 +26,8 @@ const PatoLibre = ({idProducto}) => {
     if(!data) return null;
         
 
-    const DetallesInfo = (product) =>{
-        setresultBuscator(product);
-    } 
-
   return (
     <>
-        <Header DetallesInfo={DetallesInfo}/>
 
         {productos.length === 0 ? data.length > 0 ? <Catalogo idProducto={idProducto} productos={data} resultBuscator={resultBuscator}/> : '' : <Catalogo idProducto={idProducto} productos={productos} resultBuscator={resultBuscator}/>}
     </>

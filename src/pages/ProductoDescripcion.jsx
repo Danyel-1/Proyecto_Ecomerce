@@ -1,23 +1,35 @@
 import React, { useEffect, useState } from 'react'
 
+
+
 const ProductoDescripcion = ({id}) => {
-  const [datosProduct, setDatosProduct] = useState();
+  const idProd = id;
+  const [datosProduct, setDatosProduct] = useState({});
 
   useEffect(()=>{
-    fetch(`https://api.escuelajs.co/api/v1/products/${id}`)
+    fetch(`https://api.escuelajs.co/api/v1/products/${idProd}`)
     .then(respuesta => respuesta.json())
     .then(data => {
-      setDatosProduct(data);
+      let aux = {
+        category: data.category.name,
+        description: data.description,
+        images: data.images[0],
+        price: data.price,
+        slug: data.slug,
+        title: data.title,
+      }
+
+      setDatosProduct(aux)
     })
   },[])
+  console.log(id);
+  
+  console.log(datosProduct);
 
-  const { images, price, slug, title} = datosProduct;
 
   return (
     <div>
-      <h1>{title}</h1>
-      <img src={images} alt={slug} />
-      <h2>{price}</h2>
+      {datosProduct.category ?  <img src={datosProduct.images} alt="" /> :<p>pl</p>  }
     </div>
   )
 }

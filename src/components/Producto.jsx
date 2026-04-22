@@ -1,15 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Producto = ({el, idProducto}) => {
   const { images, price, slug, title, id} = el
+  let navigate = useNavigate();
 
   const handleClick   = ()=>{
     idProducto(id);
+    navigate(`/detalle-producto/${id}`)
   }
 
   return (
-    <Link to='/detalle-producto/:id'>
       <article onClick={handleClick} className='producto'>
         <img src={images[0]} alt={slug} />
 
@@ -19,7 +20,6 @@ const Producto = ({el, idProducto}) => {
         </div>
           <button>ADD TO CAR</button>
       </article>
-    </Link>
   )
 }
 

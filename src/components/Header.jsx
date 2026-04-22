@@ -2,7 +2,7 @@ import React from 'react'
 import Buscador from './buscador'
 import { Link } from 'react-router-dom'
 
-const Header = ({DetallesInfo}) => {
+const Header = () => {
 
   return (
     <header>
@@ -11,8 +11,6 @@ const Header = ({DetallesInfo}) => {
               <img src='./src/imgs/patoLogo.png' alt="Logotipo empresa" />
           </picture>
         </Link>
-
-        <Buscador DetallesInfo={DetallesInfo}/>
 
         <button>☰</button>
         <Link to="/carrito">🛒</Link>
