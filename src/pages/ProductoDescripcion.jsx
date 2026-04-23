@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import NotFound from './NotFound';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const ProductoDescripcion = ({id}) => {
   const idProd = id;
   const [datosProduct, setDatosProduct] = useState({});
+  const navigate = useNavigate();
 
   useEffect(()=>{
     fetch(`https://api.escuelajs.co/api/v1/products/${idProd}`)
@@ -25,12 +28,31 @@ const ProductoDescripcion = ({id}) => {
   console.log(id);
   
   console.log(datosProduct);
+  const {category, description, images, price, slug, title} = datosProduct;
 
+  const handleReturn = ()=>{
+    navigate(-1)
+  }
 
   return (
-    <div>
-      {datosProduct.category ?  <img src={datosProduct.images} alt="" /> :<p>pl</p>  }
-    </div>
+    <>
+      {datosProduct.category ? 
+      <article className='product-desc'>
+        <img src={images} alt={slug} />
+        <h3>{title}</h3>
+        <p><strong> Price:</strong> ${price}.00</p>
+        <p><strong>Category:</strong> {category}</p>
+        <strong>Description:</strong>
+        <p>{description}</p>
+
+        <section className='botones'>
+          <button onClick={handleReturn}>↩</button>
+          <button>Agregar al carrito</button>
+        </section>
+      </article>  
+      :
+      <NotFound/>  }
+    </>
   )
 }
 

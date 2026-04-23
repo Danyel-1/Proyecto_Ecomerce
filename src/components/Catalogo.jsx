@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 
 const Catalogo = ({ productos, idProducto}) => {
     
+  const AddCarrito = () =>{
+
+  }
 
   return (
     <main>
