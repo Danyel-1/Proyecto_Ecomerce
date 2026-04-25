@@ -7,11 +7,19 @@ import Header from './components/Header';
 
 function App() {
   const [id, setId] = useState('');
+  const [productoCarro, setProductoCarro] = useState([]);
 
   const idProducto = (id) =>{
     setId(id);
   }
   
+  const datosCarrito = (productoAnadido) =>{
+    setProductoCarro([...productoCarro,
+      {productoAnadido}
+    ])
+    console.log(productoCarro);
+  }
+
 
   return (
     <>
@@ -22,9 +30,9 @@ function App() {
 
         <Routes>
 
-          <Route path='/' element={<PatoLibre idProducto={idProducto}/>}/>
+          <Route path='/' element={<PatoLibre datosCarrito={datosCarrito} idProducto={idProducto}/>}/>
 
-          <Route path='/carrito' element={<CarritoCompras />}/>
+          <Route path='/carrito' element={<CarritoCompras productoCarro={productoCarro} />}/>
 
           <Route path='/detalle-producto/:id' element={<ProductoDescripcion id={id}/>} />
         </Routes>

@@ -1,12 +1,18 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
-const Producto = ({el, idProducto}) => {
+const Producto = ({el, idProducto, datosCarrito}) => {
   const { images, price, slug, title, id} = el
   let navigate = useNavigate();
 
-  const Carrito = () =>{
-    alert("carrito");
+  const Carrito = (e) =>{
+    datosCarrito({
+      id: id,
+      img:images[0],
+      tl:title,
+      precio:price,
+    })
+
   }
 
   const handleClick   = ()=>{
