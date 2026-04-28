@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import NotFound from './NotFound';
 import { useNavigate } from 'react-router-dom';
+import CarritoContext from '../context/CarritoContext';
 
 
 
 const ProductoDescripcion = ({id}) => {
   const idProd = id;
   const [datosProduct, setDatosProduct] = useState({});
+  const {carrito, AgregarCarrito} = useContext(CarritoContext);
   const navigate = useNavigate();
 
   useEffect(()=>{
@@ -24,14 +26,23 @@ const ProductoDescripcion = ({id}) => {
 
       setDatosProduct(aux)
     })
-  },[])
-  console.log(id);
-  
-  console.log(datosProduct);
+  },[]);
+
   const {category, description, images, price, slug, title} = datosProduct;
 
   const handleReturn = ()=>{
     navigate(-1)
+  }
+
+  const Carrito = () =>{
+    AgregarCarrito({
+      id: id,
+      img:images[0],
+      tl:title,
+      precio:price,
+      cantidad: 1,
+    })
+    console.log(carrito);
   }
 
   return (
@@ -47,7 +58,7 @@ const ProductoDescripcion = ({id}) => {
 
         <section className='botones'>
           <button onClick={handleReturn}>↩</button>
-          <button>Agregar al carrito</button>
+          <button onClick={Carrito}>Agregar al carrito</button>
         </section>
       </article>  
       :

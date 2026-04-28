@@ -1,23 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import CarritoContext from '../context/CarritoContext';
 
-const Producto = ({el, idProducto, datosCarrito}) => {
-  const { images, price, slug, title, id} = el
+const Producto = ({el, idProducto}) => {
+  const { images, price, slug, title, id} = el;
+  const {carrito, AgregarCarrito} = useContext(CarritoContext);
   let navigate = useNavigate();
 
-  const Carrito = (e) =>{
-    datosCarrito({
+  const Carrito = () =>{
+    AgregarCarrito({
       id: id,
       img:images[0],
       tl:title,
       precio:price,
+      cantidad: 1,
     })
-
+    console.log(carrito);
   }
 
   const handleClick   = ()=>{
     idProducto(id);
-    navigate(`/detalle-producto/${id}`)
+    navigate(`/detalle-producto/${id}`);
   }
 
   return (

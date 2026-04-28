@@ -5,9 +5,11 @@
   --mono: ui-monospace, Consolas, monospace;
   
   --bg: #FFF81A;
+  --bgCarro : #6459f8;
   --bgInput : #f6f6f6;
   --border : #929292;
   --colorBoton : #0454ff;
+  --letraSecundaria: #fff;
 }
 
 body {
@@ -24,6 +26,24 @@ body {
 img{
   height: 4rem;
   width: 3rem;
+}
+
+.enlace-carrito{
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.indicador-carrito{
+  background-color: var(--bgCarro);
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  position:relative;
+  left: calc(100% - 1rem);
+  top: .7rem;
+  color: var(--letraSecundaria);
+  font-size: .9rem;
+  text-align: center;
 }
 
 /*Generales ===============================================*/

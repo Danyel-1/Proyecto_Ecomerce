@@ -4,41 +4,32 @@ import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import CarritoCompras from './pages/CarritoCompras'
 import ProductoDescripcion from './pages/ProductoDescripcion';
 import Header from './components/Header';
+import CarritoContext, { CarritoPovider } from './context/CarritoContext';
 
 function App() {
   const [id, setId] = useState('');
-  const [productoCarro, setProductoCarro] = useState([]);
 
   const idProducto = (id) =>{
     setId(id);
-  }
-  
-  const datosCarrito = (productoAnadido) =>{
-    setProductoCarro([...productoCarro,
-      {productoAnadido}
-    ])
-    console.log(productoCarro);
   }
 
 
   return (
     <>
+      <CarritoPovider>
+        <HashRouter basename='products'>
+          <Header/>
 
-      <HashRouter basename='products'>
-        
-        <Header/>
+          <Routes>
 
-        <Routes>
+            <Route path='/' element={<PatoLibre idProducto={idProducto}/>}/>
 
-          <Route path='/' element={<PatoLibre datosCarrito={datosCarrito} idProducto={idProducto}/>}/>
+            <Route path='/carrito' element={<CarritoCompras />}/>
 
-          <Route path='/carrito' element={<CarritoCompras productoCarro={productoCarro} />}/>
-
-          <Route path='/detalle-producto/:id' element={<ProductoDescripcion id={id}/>} />
-        </Routes>
-
-
-      </HashRouter>
+            <Route path='/detalle-producto/:id' element={<ProductoDescripcion id={id}/>} />
+          </Routes>
+        </HashRouter>
+      </CarritoPovider>
     </>
   )
 }

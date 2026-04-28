@@ -1,19 +1,18 @@
 import { createContext, useState } from "react";
 
 const CarritoContext = createContext();
-
-const CarritoTotal = {};
+//const CarritoTotal = [];
 
 const CarritoPovider = ({children}) =>{
-    const [carrito, setCarrito] = useState(CarritoTotal);
-
-   const data = {carrito};
-
-   const AgregarCarrito = () => {
-    setCarrito({...carrito,
-        children
-    })
-   }
+    const [carrito, setCarrito] = useState([]);
+    
+    const AgregarCarrito = (datos) => {
+        setCarrito([...carrito,
+            {datos}
+        ])
+    }
+    
+    const data = {carrito, AgregarCarrito};
 
    return <CarritoContext.Provider value={data}>{children}</CarritoContext.Provider>
 }
