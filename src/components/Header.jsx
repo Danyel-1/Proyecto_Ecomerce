@@ -4,13 +4,15 @@ import { Link } from 'react-router-dom'
 import CarritoContext from '../context/CarritoContext'
 
 const Header = () => {
-  const [piezas, setPiezas] = useState()
+  const [piezas, setPiezas] = useState(0);
   const {carrito , AgregarCarrito} = useContext(CarritoContext);
   
   useEffect(()=>{
     let totalPiezas = carrito.reduce((acumulador, actual) => acumulador + actual.datos.cantidad, 0);
     
     setPiezas(totalPiezas);
+    console.log(piezas);
+    
   },[carrito]);
 
   return (

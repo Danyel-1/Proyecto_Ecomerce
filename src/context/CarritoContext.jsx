@@ -7,9 +7,16 @@ const CarritoPovider = ({children}) =>{
     const [carrito, setCarrito] = useState([]);
     
     const AgregarCarrito = (datos) => {
-        setCarrito([...carrito,
-            {datos}
-        ])
+        const productoExiste = carrito.find((el)=> el.datos.id === datos.id);
+
+        if (productoExiste) {
+            productoExiste.datos.cantidad += 1;
+        }else{
+            setCarrito([...carrito,
+                {datos}
+            ])
+            
+        }
     }
     
     const data = {carrito, AgregarCarrito};
