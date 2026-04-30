@@ -5,7 +5,15 @@ const CarritoContext = createContext();
 
 const CarritoPovider = ({children}) =>{
     const [carrito, setCarrito] = useState([]);
-    
+
+    const ActualizarCantidad = (datos, cant) =>{
+        const productoActualizar = carrito.find((el)=> el.datos.id === datos);
+
+        productoActualizar.datos.cantidad = cant;
+
+        console.log(productoActualizar);
+    }
+
     const AgregarCarrito = (datos) => {
         const productoExiste = carrito.find((el)=> el.datos.id === datos.id);
 
@@ -19,7 +27,7 @@ const CarritoPovider = ({children}) =>{
         }
     }
     
-    const data = {carrito, AgregarCarrito};
+    const data = {carrito, AgregarCarrito, ActualizarCantidad};
 
    return <CarritoContext.Provider value={data}>{children}</CarritoContext.Provider>
 }

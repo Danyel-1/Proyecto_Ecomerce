@@ -158,6 +158,12 @@ button:hover{
   margin: 1rem;
 }
 
+/*Detalles del carrito ===============================================*/
+td > p{
+  margin: 0;
+}
+
+
 @media (min-width: 1024px) {
   .catalogo{
     width: 80%;
