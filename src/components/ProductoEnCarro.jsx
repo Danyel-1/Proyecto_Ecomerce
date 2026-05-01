@@ -1,17 +1,29 @@
 import React, { useState } from 'react'
 
-const ProductoEnCarro = ({el, ActualizarCantidad}) => {
+const ProductoEnCarro = ({el, ActualizarCantidad, ActualizarPrecio, EliminarProducto}) => {
     const {tl, img, precio, cantidad, id} = el;
     const [cantProd, setCantProd] = useState(cantidad);
 
-    const suma = () =>{
-      setCantProd(cantProd + 1)
-        ActualizarCantidad(id, cantProd);
-      console.log(cantidad);
-      
-    };
+  const suma = () =>{
+    setCantProd(cantProd + 1);
+    ActualizarCantidad(id, 's');
+    ActualizarPrecio();
+  };
 
-  const resta = () =>{};
+  const resta = () =>{
+    if (cantidad === 1) {
+      setCantProd(cantProd - 0);
+      ActualizarCantidad(id,  'n' );
+    }else{
+      ActualizarCantidad(id,  'r' );
+      setCantProd(cantProd - 1);
+    }
+    ActualizarPrecio();
+  };
+
+  const Eliminar = () =>{
+    EliminarProducto(id);
+  }
 
   return (
     <tr>
@@ -23,9 +35,9 @@ const ProductoEnCarro = ({el, ActualizarCantidad}) => {
             <p><strong>ID:</strong> {id}</p>
         </td>
 
-        <td><button>-</button><p>{cantProd}</p><button onClick={suma}>+</button></td>
+        <td><button onClick={resta}>-</button><p>{cantProd}</p><button onClick={suma}>+</button></td>
     
-        <td><button>🗑</button></td>
+        <td><button onClick={Eliminar}>🗑</button></td>
     </tr>
   )
 }

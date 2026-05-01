@@ -10,9 +10,7 @@ const Header = () => {
   useEffect(()=>{
     let totalPiezas = carrito.reduce((acumulador, actual) => acumulador + actual.datos.cantidad, 0);
     
-    setPiezas(totalPiezas);
-    console.log(piezas);
-    
+    setPiezas(totalPiezas);    
   },[carrito]);
 
   return (
