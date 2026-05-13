@@ -18,7 +18,7 @@ const Producto = ({el, idProducto}) => {
     console.log(carrito);
   }
 
-  const handleClick   = ()=>{
+  const handleClick = ()=>{
     idProducto(id);
     navigate(`/detalle-producto/${id}`);
   }

@@ -27,15 +27,16 @@ const CarritoCompras = () => {
           {carrito.length > 0 ? carrito.map((el)=> <ProductoEnCarro EliminarProducto={EliminarProducto} ActualizarPrecio={ActualizarPrecio} ActualizarCantidad={ActualizarCantidad} key={el.datos.id} el={el.datos}/> 
         ) : (
           <tr>
-            <td>No tienes productos en carro</td>
+            <td className='carro-vacio'><img src="./src/imgs/carritovacio.png" alt="Carrito vacio" /></td>
           </tr>
         ) }
         </tbody>
       </table>
 
-      <section>
-        <h3>Order Summary</h3>
+      <section className='pre-compra'>
+        <h2>Order Summary</h2>
         <p>Total: {costoTotal}</p>
+        <button>Checkout</button>
       </section>
     </div>
   )

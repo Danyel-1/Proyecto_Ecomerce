@@ -5,6 +5,7 @@ import CarritoContext from '../context/CarritoContext'
 
 const Header = () => {
   const [piezas, setPiezas] = useState(0);
+  const [botonHamburger, setBotonHamburger] = useState(false)
   const {carrito , AgregarCarrito} = useContext(CarritoContext);
   
   useEffect(()=>{
@@ -21,8 +22,13 @@ const Header = () => {
           </picture>
         </Link>
 
-        <button>☰</button>
-        <Link to="/carrito" className='enlace-carrito'>{ carrito.length > 0 && <div className='indicador-carrito'>{piezas}</div>}🛒</Link>
+        <div className="botones-generales">
+          <button>☰</button>
+          <nav>
+            
+          </nav>
+          <Link to="/carrito" className='enlace-carrito'>{ carrito.length > 0 && <div className='indicador-carrito'>{piezas}</div>}🛒</Link>
+        </div>
     </header>
   )
 }
