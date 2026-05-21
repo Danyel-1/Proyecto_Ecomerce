@@ -12,7 +12,7 @@ const Header = () => {
     let totalPiezas = carrito.reduce((acumulador, actual) => acumulador + actual.datos.cantidad, 0);
     
     setPiezas(totalPiezas);    
-  },[carrito]);
+  },[carrito, piezas]);
 
   return (
     <header>

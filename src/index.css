@@ -177,10 +177,6 @@ td > p{
   margin: 0;
 }
 
-table{
-  
-}
-
 .carro-vacio > img{
   width:10rem;
   height: 10rem;
@@ -198,7 +194,42 @@ table{
   margin-bottom: 1rem;
 }
 
+/*Paginacion ================================================*/
+.active{
+  background-color: var(--border);
+}
 
+nav .lista-paginas{
+  width: 80%;
+  margin: 0.8rem auto;
+}
+
+.lista-paginas{
+  display: flex;
+  gap: .2rem;
+  font-size: 1.2rem;
+}
+
+.lista-paginas > li{
+  list-style: none;
+  width: 1.5rem;
+  border-radius: 50%;
+  border: var(--border) 1px solid;
+  text-align: center;
+  font-weight: 600;
+}
+
+li > a{
+  text-decoration: none;
+  color: black;
+}
+
+.lista-paginas > li:hover{
+  background-color: #d7d7d7;
+  cursor: pointer;
+}
+
+/*Medias Query ================================================*/
 @media (min-width: 1024px) {
   .catalogo{
     width: 80%;

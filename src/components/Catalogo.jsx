@@ -13,6 +13,7 @@ const Catalogo = ({ productos, idProducto}) => {
 
         {productos.length > 0 ? productos.map((el)=> <Producto  idProducto={idProducto} key={el.id} el={el}/>) : <p>Sin datos</p>}
       </section>
+
     </main>
   )
 }
