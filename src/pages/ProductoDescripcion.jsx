@@ -42,7 +42,6 @@ const ProductoDescripcion = ({id}) => {
       precio:price,
       cantidad: 1,
     })
-    console.log(carrito);
   }
 
   return (

@@ -3,7 +3,7 @@ import CarritoContext from '../context/CarritoContext'
 import ProductoEnCarro from '../components/ProductoEnCarro';
 
 const CarritoCompras = () => {
-  const {carrito, AgregarCarrito, ActualizarCantidad, EliminarProducto} = useContext(CarritoContext);
+  const {carrito, AgregarCarrito, ActualizarCantidad, EliminarProducto, ActualizarIndicador} = useContext(CarritoContext);
 
   const [costoTotal, setCostoTotal] = useState(0);
 
@@ -24,10 +24,16 @@ const CarritoCompras = () => {
       <h1>Carrito de compras</h1>
       <table>
         <tbody>
-          {carrito.length > 0 ? carrito.map((el)=> <ProductoEnCarro EliminarProducto={EliminarProducto} ActualizarPrecio={ActualizarPrecio} ActualizarCantidad={ActualizarCantidad} key={el.datos.id} el={el.datos}/> 
+          {carrito.length > 0 ? carrito.map((el)=> <ProductoEnCarro 
+            ActualizarIndicador={ActualizarIndicador} EliminarProducto={EliminarProducto} 
+            ActualizarPrecio={ActualizarPrecio} 
+            ActualizarCantidad={ActualizarCantidad} 
+            key={el.datos.id} 
+            el={el.datos}
+          /> 
         ) : (
           <tr>
-            <td className='carro-vacio'><img src="./src/imgs/carritovacio.png" alt="Carrito vacio" /></td>
+            <td className='carro-vacio'><img src="/carritovacio.png" alt="Carrito vacio" /></td>
           </tr>
         ) }
         </tbody>

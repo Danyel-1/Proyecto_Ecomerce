@@ -4,21 +4,21 @@ import { Link } from 'react-router-dom'
 import CarritoContext from '../context/CarritoContext'
 
 const Header = () => {
-  const [piezas, setPiezas] = useState(0);
   const [botonHamburger, setBotonHamburger] = useState(false)
-  const {carrito , AgregarCarrito} = useContext(CarritoContext);
+  const {carrito , AgregarCarrito, numArticulo} = useContext(CarritoContext);
+  const [piezas, setPiezas] = useState(numArticulo);
   
   useEffect(()=>{
     let totalPiezas = carrito.reduce((acumulador, actual) => acumulador + actual.datos.cantidad, 0);
     
     setPiezas(totalPiezas);    
-  },[carrito, piezas]);
+  },[carrito, numArticulo]);
 
   return (
     <header>
         <Link to='/'>
           <picture>
-              <img src='./src/imgs/patoLogo.png' alt="Logotipo empresa" />
+              <img src='/patoLogo.png' alt="Logotipo empresa" />
           </picture>
         </Link>
 

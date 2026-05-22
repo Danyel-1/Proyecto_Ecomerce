@@ -4,7 +4,7 @@ import CarritoContext from '../context/CarritoContext';
 
 const Producto = ({el, idProducto}) => {
   const { images, price, slug, title, id} = el;
-  const {carrito, AgregarCarrito} = useContext(CarritoContext);
+  const {carrito, AgregarCarrito , ActualizarIndicador} = useContext(CarritoContext);
   let navigate = useNavigate();
 
   const Carrito = () =>{
@@ -15,7 +15,8 @@ const Producto = ({el, idProducto}) => {
       precio:price,
       cantidad: 1,
     })
-    console.log(carrito);
+    //console.log(carrito);
+    ActualizarIndicador();
   }
 
   const handleClick = ()=>{

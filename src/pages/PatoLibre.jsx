@@ -52,8 +52,6 @@ const PatoLibre = ({idProducto}) => {
       setPaginaActual(num);
     }
     
-    console.log(off, limit);
-    
 
     if(!data) return null;
        
