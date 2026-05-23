@@ -68,6 +68,50 @@ img{
   text-align: center;
 }
 
+.nav-de-auth{
+  width: 100%;
+  margin-top: 4rem;
+  border: var(--border) 2px solid;
+}
+
+.nav-de-auth > button{
+  margin: 0.5rem;
+}
+
+.bienvenido{
+  display: block;
+  background-color: var(--bg);
+}
+
+.mensaje-bienv{
+  justify-content: center;
+  display: flex;
+  padding-top: .5rem;
+}
+
+.picture{
+  display: flex;
+  background-color: var(--border);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+}
+
+.mensajes > h4,
+.mensajes > p{
+  margin: 0;
+  text-align: center;
+}
+
+.botones-auth{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.botones-auth > button{
+  margin: 1rem;
+}
 
 /*Buscador =================================================*/
 .buscador{
@@ -229,6 +273,10 @@ li > a{
   cursor: pointer;
 }
 
+.desktop{
+  display: none;
+}
+
 /*Medias Query ================================================*/
 @media (min-width: 1024px) {
   .catalogo{
@@ -241,5 +289,13 @@ li > a{
 
   .product-desc{
     width: 50%;
+  }
+
+  .desktop{
+    display: block;
+  }
+
+  .movil{
+    display: none;
   }
 }

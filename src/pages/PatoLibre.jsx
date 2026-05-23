@@ -3,8 +3,9 @@ import Header from '../components/Header'
 import Catalogo from '../components/Catalogo'
 import { useFetch } from '../hooks/useFetch';
 import Paginacion from '../components/Paginacion';
+import MenuHamburguesa from '../components/MenuHamburguesa';
 
-const PatoLibre = ({idProducto}) => {
+const PatoLibre = ({idProducto, menu}) => {
     const [resultBuscator, setresultBuscator] = useState('');
     const [off, setOff] = useState(0);
     const [limit, setLimit] = useState(8);
@@ -52,12 +53,17 @@ const PatoLibre = ({idProducto}) => {
       setPaginaActual(num);
     }
     
+    const MostrarMenu = () =>{
+
+    }
 
     if(!data) return null;
        
 
   return (
     <>
+        { menu && <MenuHamburguesa/>}
+
         {productos.length === 0 ? data.length > 0 ? <Catalogo idProducto={idProducto} productos={data} resultBuscator={resultBuscator}/> : '' : <Catalogo idProducto={idProducto} productos={productos} resultBuscator={resultBuscator}/>}
 
         <Paginacion paginaActual={paginaActual} numPages={numPaginas} pagina={pagina} />

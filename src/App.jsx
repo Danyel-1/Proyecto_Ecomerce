@@ -8,21 +8,25 @@ import CarritoContext, { CarritoPovider } from './context/CarritoContext';
 
 function App() {
   const [id, setId] = useState('');
+  const [menu , setMenu] = useState(false);
 
   const idProducto = (id) =>{
     setId(id);
   }
 
+  const MostrarMenu = () =>{
+    setMenu(!menu);
+  }
 
   return (
     <>
       <CarritoPovider>
         <HashRouter basename='products'>
-          <Header/>
+          <Header MostrarMenu={MostrarMenu} menu={menu}/>
 
           <Routes>
 
-            <Route path='/' element={<PatoLibre idProducto={idProducto}/>}/>
+            <Route path='/' element={<PatoLibre menu={menu} idProducto={idProducto}/>}/>
 
             <Route path='/carrito' element={<CarritoCompras />}/>
 
