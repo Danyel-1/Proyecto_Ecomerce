@@ -109,7 +109,13 @@ img{
   justify-content: center;
 }
 
-.botones-auth > button{
+.botones-auth > .enlace-auths{
+  background-color: var(--colorBoton);
+  border-radius: 10px;
+  padding: .2rem;
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--letraSecundaria);
   margin: 1rem;
 }
 
@@ -120,7 +126,7 @@ img{
 
 input{
   padding-left: 1rem;
-  width: 400px;
+  width: 100%;
   color: var(--color_letra);
   outline: none;
 }
@@ -277,6 +283,19 @@ li > a{
   display: none;
 }
 
+/*Crear Cuenta ================================================*/
+.crear-cuenta{
+  margin-top: 7rem;
+}
+
+/*Ingresar Cuenta ================================================*/
+.formulario-ingreso{
+  display: block;
+  width: 80%;
+  margin: 6rem auto;
+}
+
+
 /*Medias Query ================================================*/
 @media (min-width: 1024px) {
   .catalogo{
@@ -292,7 +311,31 @@ li > a{
   }
 
   .desktop{
-    display: block;
+    display: block; 
+  }
+
+  .botones-auth > .enlace-auths{
+    background-color: var(--bg);
+    border: 1px solid #000;
+    padding: .2rem;
+    text-decoration: none;
+    color: #000;
+  }
+
+  .botones-auth > .enlace-auths:hover{
+    border: 1px solid var(--letraSecundaria);
+    color: var(--letraSecundaria);
+  }
+
+  .botones-generales{
+    width: 22rem;
+  }
+
+  .enlace-carrito{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: -5px;
   }
 
   .movil{

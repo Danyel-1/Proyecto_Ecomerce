@@ -30,8 +30,10 @@ const Header = ({MostrarMenu, menu}) => {
 
         <div className="botones-generales desktop">
           <section className='botones-auth'>
-              <button >Ingresar Cuenta</button>
-              <button>Registrarse</button>
+            <Link to="/ingresar-cuenta" className='enlace-auths'>Ingresar Cuenta</Link>
+            <Link to="/crear-cuenta" className='enlace-auths'>Registrarse</Link>
+
+            <Link to="/carrito" className='enlace-carrito'>{ carrito.length > 0 && <div className='indicador-carrito'>{piezas}</div>}🛒</Link> 
           </section>
         </div>
 

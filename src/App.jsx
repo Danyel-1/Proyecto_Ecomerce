@@ -1,14 +1,26 @@
-import React, { useState }  from 'react'
+import React, { useEffect, useState }  from 'react'
 import PatoLibre from './pages/PatoLibre'
 import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import CarritoCompras from './pages/CarritoCompras'
 import ProductoDescripcion from './pages/ProductoDescripcion';
 import Header from './components/Header';
 import CarritoContext, { CarritoPovider } from './context/CarritoContext';
+import CrearCuenta from './pages/CrearCuenta';
+import IngresarCuenta from './pages/IngresarCuenta';
 
 function App() {
   const [id, setId] = useState('');
   const [menu , setMenu] = useState(false);
+
+  const handleResize = () =>{
+    if (window.innerWidth > 720) {
+      setMenu(false);
+    }
+  }
+
+  useEffect(()=>{
+    window.addEventListener("resize", handleResize);
+  })
 
   const idProducto = (id) =>{
     setId(id);
@@ -29,6 +41,9 @@ function App() {
             <Route path='/' element={<PatoLibre menu={menu} idProducto={idProducto}/>}/>
 
             <Route path='/carrito' element={<CarritoCompras />}/>
+
+            <Route path='/crear-cuenta' element={<CrearCuenta/>} />
+            <Route path='/ingresar-cuenta' element={<IngresarCuenta/>} />
 
             <Route path='/detalle-producto/:id' element={<ProductoDescripcion id={id}/>} />
           </Routes>

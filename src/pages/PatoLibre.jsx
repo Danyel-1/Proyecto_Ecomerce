@@ -6,7 +6,7 @@ import Paginacion from '../components/Paginacion';
 import MenuHamburguesa from '../components/MenuHamburguesa';
 
 const PatoLibre = ({idProducto, menu}) => {
-    const [resultBuscator, setresultBuscator] = useState('');
+    const [resultBuscator, setResultBuscator] = useState('');
     const [off, setOff] = useState(0);
     const [limit, setLimit] = useState(8);
     const [numPaginas, setNumPaginas] = useState();
