@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const MenuHamburguesa = () => { 
+const MenuHamburguesa = ({MostrarMenu}) => { 
 
   return (
     <nav className='nav-de-auth movil'>
@@ -33,7 +33,7 @@ const MenuHamburguesa = () => {
             </div>
 
             <section className='botones-auth botones'>
-                <Link to="/ingresar-cuenta" className='enlace-auths'>Ingresar Cuenta</Link>
+                <Link onClick={MostrarMenu} to="/ingresar-cuenta" className='enlace-auths'>Ingresar Cuenta</Link>
                 <Link to="/crear-cuenta" className='enlace-auths'>Registrarse</Link>
             </section>
         </div>

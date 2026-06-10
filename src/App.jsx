@@ -5,8 +5,10 @@ import CarritoCompras from './pages/CarritoCompras'
 import ProductoDescripcion from './pages/ProductoDescripcion';
 import Header from './components/Header';
 import CarritoContext, { CarritoPovider } from './context/CarritoContext';
+import UsuarioContext, {UsuarioProvider} from './context/UsuariosContext';
 import CrearCuenta from './pages/CrearCuenta';
 import IngresarCuenta from './pages/IngresarCuenta';
+import MenuHamburguesa from './components/MenuHamburguesa';
 
 function App() {
   const [id, setId] = useState('');
@@ -32,9 +34,12 @@ function App() {
 
   return (
     <>
+    <UsuarioProvider>
       <CarritoPovider>
         <HashRouter basename='products'>
           <Header MostrarMenu={MostrarMenu} menu={menu}/>
+          
+        { menu && <MenuHamburguesa MostrarMenu={MostrarMenu}/>}
 
           <Routes>
 
@@ -49,6 +54,7 @@ function App() {
           </Routes>
         </HashRouter>
       </CarritoPovider>
+    </UsuarioProvider>
     </>
   )
 }

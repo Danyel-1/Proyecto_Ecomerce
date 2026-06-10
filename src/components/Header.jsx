@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Buscador from './buscador'
 import { Link } from 'react-router-dom'
 import CarritoContext from '../context/CarritoContext'
+import MenuHamburguesa from './MenuHamburguesa'
 
 const Header = ({MostrarMenu, menu}) => {
   const [botonHamburger, setBotonHamburger] = useState(false)
@@ -30,7 +31,7 @@ const Header = ({MostrarMenu, menu}) => {
 
         <div className="botones-generales desktop">
           <section className='botones-auth'>
-            <Link to="/ingresar-cuenta" className='enlace-auths'>Ingresar Cuenta</Link>
+            <Link  to="/ingresar-cuenta" className='enlace-auths'>Ingresar Cuenta</Link>
             <Link to="/crear-cuenta" className='enlace-auths'>Registrarse</Link>
 
             <Link to="/carrito" className='enlace-carrito'>{ carrito.length > 0 && <div className='indicador-carrito'>{piezas}</div>}🛒</Link> 

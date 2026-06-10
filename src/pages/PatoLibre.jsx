@@ -5,7 +5,7 @@ import { useFetch } from '../hooks/useFetch';
 import Paginacion from '../components/Paginacion';
 import MenuHamburguesa from '../components/MenuHamburguesa';
 
-const PatoLibre = ({idProducto, menu}) => {
+const PatoLibre = ({idProducto}) => {
     const [resultBuscator, setResultBuscator] = useState('');
     const [off, setOff] = useState(0);
     const [limit, setLimit] = useState(8);
@@ -62,7 +62,7 @@ const PatoLibre = ({idProducto, menu}) => {
 
   return (
     <>
-        { menu && <MenuHamburguesa/>}
+        
 
         {productos.length === 0 ? data.length > 0 ? <Catalogo idProducto={idProducto} productos={data} resultBuscator={resultBuscator}/> : '' : <Catalogo idProducto={idProducto} productos={productos} resultBuscator={resultBuscator}/>}
 
