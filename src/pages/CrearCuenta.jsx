@@ -2,7 +2,7 @@ import React, { useContext} from 'react'
 import UsuarioContext from '../context/UsuariosContext'
 
 const CrearCuenta = () => {
-  const {botonSubmit, mensajeError, nombre, setNombre, errorNombre, email, setEmail, errorEmail, password, setPassword, errorPassword, validarDatos, mandarDatos} = useContext(UsuarioContext);
+  const {botonSubmit, mensajeError, setNombre, errorNombre, setEmail, errorEmail, setPassword, errorPassword, validarDatos, mandarDatos} = useContext(UsuarioContext);
 
   return (
     <section className='formulario-ingreso'>
@@ -46,8 +46,10 @@ const CrearCuenta = () => {
 
         <div className='botones'>
           <button  type='submit' disabled={!botonSubmit}>Continuar</button>
-        </div>
+        </div> 
       </form>
+
+      <div>{mensajeError}</div>
 
     </section>
   )

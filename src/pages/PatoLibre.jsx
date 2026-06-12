@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Header from '../components/Header'
 import Catalogo from '../components/Catalogo'
 import { useFetch } from '../hooks/useFetch';
 import Paginacion from '../components/Paginacion';
 import MenuHamburguesa from '../components/MenuHamburguesa';
+import UsuarioContext from '../context/UsuariosContext';
 
 const PatoLibre = ({idProducto}) => {
     const [resultBuscator, setResultBuscator] = useState('');
@@ -15,10 +16,11 @@ const PatoLibre = ({idProducto}) => {
     
     const url = `https://api.escuelajs.co/api/v1/products`;
     const {data, error, loading} = useFetch(url);
+    //console.log(data);     
     
-    //console.log(data);
+    //console.log(tokens.access_token);
     
-    
+
     useEffect(()=>{ 
       let aux = [];
       
@@ -62,7 +64,6 @@ const PatoLibre = ({idProducto}) => {
 
   return (
     <>
-        
 
         {productos.length === 0 ? data.length > 0 ? <Catalogo idProducto={idProducto} productos={data} resultBuscator={resultBuscator}/> : '' : <Catalogo idProducto={idProducto} productos={productos} resultBuscator={resultBuscator}/>}
 

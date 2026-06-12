@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import UsuarioContext from '../context/UsuariosContext'
 
 const MenuHamburguesa = ({MostrarMenu}) => { 
+    const [detalles, setDetalles] = useState('');
+
+    const {user} = useContext(UsuarioContext);
+
+    console.log(user);
 
   return (
     <nav className='nav-de-auth movil'>
@@ -32,10 +38,12 @@ const MenuHamburguesa = ({MostrarMenu}) => {
                 </div>
             </div>
 
-            <section className='botones-auth botones'>
+            <p>{detalles}</p>
+
+           { !user && <section className='botones-auth botones'>
                 <Link onClick={MostrarMenu} to="/ingresar-cuenta" className='enlace-auths'>Ingresar Cuenta</Link>
                 <Link to="/crear-cuenta" className='enlace-auths'>Registrarse</Link>
-            </section>
+            </section>}
         </div>
 
         <button>Inicio 

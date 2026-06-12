@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const UsuarioContext = createContext();
 
@@ -12,15 +12,52 @@ const UsuarioProvider = ({children})=>{
     const [password, setPassword] = useState('');
     const [errorPassword, setErrorPassword] = useState('');
     const [user , setUser]= useState();
+    const [datosUsuarioLogueado, setDatosUsuarioLogueado] = useState();
+    
+    useEffect(()=>{
+        const usuarioLogueado =  JSON.parse(window.localStorage.getItem('user'));
+        
+        if (usuarioLogueado) {
+            const usuarioEncontrado = usuarioLogueado;
+            setUser(usuarioEncontrado);
+            console.log('usuario encontrado');
+        }else{
+            setMensajeError("Usuario no encontrado");
+        }
+        
+    },[]);
+    
+    useEffect(()=>{
+        const datosUsuarioLogueado = async ()=>{
+
+        if (user) {
+            const response = await fetch("https://api.escuelajs.co/api/v1/auth/profile",{
+            method: 'GET',
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization': `Bearer ${user.access_token}`,
+            },
+            }) 
+
+            const result = await response.json();
+            
+            setDatosUsuarioLogueado(result);
+            
+            if (!response.ok) {
+                throw new Error(`Response status : ${response.status}`)
+            }
+
+        }
+    }
+        datosUsuarioLogueado();
+    },[user]);
+    
+    
 
     const validarDatos=()=>{
         const nomRegex = /^[a-zA-Z\s]{8}/;
         const emailRegex = /[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})/i;
-
-        console.log(email);
-        console.log(password);
-        
-        
+                
         if ((nombre.length >= 0) && (nomRegex.test(nombre))){
         setBotonSubmit(true);
         setErrorNombre('correcto')
@@ -66,33 +103,42 @@ const UsuarioProvider = ({children})=>{
         e.preventDefault();
 
         try {
-        const responce = await fetch("https://api.escuelajs.co/api/v1/auth/login", {
-            method: "POST",
-            headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify({
-            email: email,
-            password: password,
-            })
-        });
+            const responce = await fetch("https://api.escuelajs.co/api/v1/auth/login", {
+                method: "POST",
+                headers: {'Content-Type' : 'application/json'},
+                body: JSON.stringify({
+                email: email,
+                password: password,
+                })
+            });
 
-        const data = await responce.json();
+            const data = await responce.json();
 
-        setUser(data);
+            setUser(data);
 
-        localStorage.setItem('user', data);  
-        
-        console.log(user);
-        
-        if (!responce.ok) {
-            throw new Error(`Responce status: ${responce.status}`)
-        }
+            console.log(data);
+            
+            window.localStorage.setItem('user', JSON.stringify(data));   
+            
+            console.log("Logueado");
+            
+
+            if (!responce.ok) {
+                throw new Error(`Responce status: ${responce.status}`)
+            }
 
         } catch (error) {
-        setMensajeError(`Response estatus: ${error.message}`)
+            setMensajeError(`Response estatus: ${error.message}`)
         }
     }
 
-    const data = {botonSubmit, mensajeError, nombre, setNombre, errorNombre, email, setEmail, errorEmail, password, setPassword, errorPassword, validarDatos, mandarDatos, loguearUsusario}
+    const handleLogout = () => {        
+        setUser();
+        setPassword('');
+        window.localStorage.clear();
+    };
+
+    const data = {botonSubmit, mensajeError, nombre, setNombre, errorNombre, email, setEmail, errorEmail, password, setPassword, errorPassword, validarDatos, mandarDatos, loguearUsusario, setUser, user, datosUsuarioLogueado, handleLogout}
 
     return <UsuarioContext.Provider value={data}>{children}</UsuarioContext.Provider>
 }

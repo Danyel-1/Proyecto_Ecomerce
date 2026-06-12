@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from 'react'
+import React, { useContext, useEffect, useState }  from 'react'
 import PatoLibre from './pages/PatoLibre'
 import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import CarritoCompras from './pages/CarritoCompras'
