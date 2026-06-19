@@ -1,11 +1,23 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const CarritoContext = createContext();
-//const CarritoTotal = [];
 
 const CarritoPovider = ({children}) =>{
     const [carrito, setCarrito] = useState([]);
     const [numArticulo, setNumArticulo] = useState(0);
+
+    useEffect(()=>{
+        const carritoEnUso =  JSON.parse(window.localStorage.getItem('carrito'));
+        
+        if (carritoEnUso) {
+            const carritoEncontrado = carritoEnUso;
+            setCarrito(carritoEncontrado);
+        }
+    },[])
+
+    const GuardarCarrito = ()=>{
+        window.localStorage.setItem('carrito', JSON.stringify(carrito));
+    }
 
     const ActualizarCantidad = (datos, char) =>{
         const productoActualizar = carrito.find((el)=> el.datos.id === datos);
@@ -24,13 +36,12 @@ const CarritoPovider = ({children}) =>{
         let confirmar = confirm(`Eliminar producto con el id: ${datos}?`);
 
         if (confirmar) {
-            let aux = carrito.filter((el)=> el.datos.id != datos)
-    
+            let aux = carrito.filter((el)=> el.datos.id != datos);
             setCarrito(aux);
         }
     }
 
-    const AgregarCarrito = (datos) => {
+    const AgregarCarrito = async (datos) => {
         const productoExiste = carrito.find((el)=> el.datos.id === datos.id);
 
         if (productoExiste) {
@@ -38,7 +49,7 @@ const CarritoPovider = ({children}) =>{
         }else{
             setCarrito([...carrito,
                 {datos}
-            ])   
+            ])
         }
     }
 
@@ -48,7 +59,7 @@ const CarritoPovider = ({children}) =>{
         setNumArticulo(totalPiezas); 
     }
     
-    const data = {carrito,numArticulo, ActualizarIndicador, AgregarCarrito, ActualizarCantidad, EliminarProducto};
+    const data = {carrito,numArticulo, ActualizarIndicador,AgregarCarrito, ActualizarCantidad, GuardarCarrito,EliminarProducto};
 
    return <CarritoContext.Provider value={data}>{children}</CarritoContext.Provider>
 }

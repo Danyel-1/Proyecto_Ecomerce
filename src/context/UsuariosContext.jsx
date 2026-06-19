@@ -20,9 +20,6 @@ const UsuarioProvider = ({children})=>{
         if (usuarioLogueado) {
             const usuarioEncontrado = usuarioLogueado;
             setUser(usuarioEncontrado);
-            console.log('usuario encontrado');
-        }else{
-            setMensajeError("Usuario no encontrado");
         }
         
     },[]);
@@ -58,20 +55,20 @@ const UsuarioProvider = ({children})=>{
         const nomRegex = /^[a-zA-Z\s]{8}/;
         const emailRegex = /[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})/i;
                 
-        if ((nombre.length >= 0) && (nomRegex.test(nombre))){
-        setBotonSubmit(true);
-        setErrorNombre('correcto')
+        if ((nombre.length > 0) && (nomRegex.test(nombre))){
+            setBotonSubmit(true);
+            setErrorNombre('correcto');
         }else{
-        setErrorNombre("El nombre debe tener minimo 8 caracteres");
-        setBotonSubmit(false);
+            setErrorNombre("El nombre debe tener minimo 8 caracteres");
+            setBotonSubmit(false);
         }
     
-        if ((email.length >= 0) && (emailRegex.test(email))){
-        setErrorEmail("Correcto");
-        setBotonSubmit(true);
+        if ((email.length > 0) && (emailRegex.test(email))){
+            setErrorEmail("Correcto");
+            setBotonSubmit(true);
         }else{
-        setErrorEmail("Escriba su Email en un formato valido");
-        setBotonSubmit(false);
+            setErrorEmail("Escriba su Email en un formato valido");
+            setBotonSubmit(false);
         }
     }
 
@@ -95,7 +92,7 @@ const UsuarioProvider = ({children})=>{
         }
 
         } catch (error) {
-        setMensajeError(`Response estatus: ${error.message}`)
+            setMensajeError(`Response estatus: ${error.message}`)
         }
     }
  
@@ -111,7 +108,12 @@ const UsuarioProvider = ({children})=>{
                 password: password,
                 })
             });
-
+                        
+            if (!responce.ok) {
+                setMensajeError(`Responce status: ${responce.status}`);
+                throw new Error(`Responce status: ${responce.status}`)
+            }
+            
             const data = await responce.json();
 
             setUser(data);
@@ -119,13 +121,6 @@ const UsuarioProvider = ({children})=>{
             console.log(data);
             
             window.localStorage.setItem('user', JSON.stringify(data));   
-            
-            console.log("Logueado");
-            
-
-            if (!responce.ok) {
-                throw new Error(`Responce status: ${responce.status}`)
-            }
 
         } catch (error) {
             setMensajeError(`Response estatus: ${error.message}`)
@@ -135,7 +130,7 @@ const UsuarioProvider = ({children})=>{
     const handleLogout = () => {        
         setUser();
         setPassword('');
-        window.localStorage.clear();
+        window.localStorage.removeItem('user');
     };
 
     const data = {botonSubmit, mensajeError, nombre, setNombre, errorNombre, email, setEmail, errorEmail, password, setPassword, errorPassword, validarDatos, mandarDatos, loguearUsusario, setUser, user, datosUsuarioLogueado, handleLogout}

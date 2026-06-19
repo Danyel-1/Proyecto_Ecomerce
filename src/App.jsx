@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState }  from 'react'
+import React, { useEffect, useState }  from 'react'
 import PatoLibre from './pages/PatoLibre'
 import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import CarritoCompras from './pages/CarritoCompras'
@@ -9,6 +9,8 @@ import UsuarioContext, {UsuarioProvider} from './context/UsuariosContext';
 import CrearCuenta from './pages/CrearCuenta';
 import IngresarCuenta from './pages/IngresarCuenta';
 import MenuHamburguesa from './components/MenuHamburguesa';
+import CuentaUsuario from './pages/CuentaUsuario';
+import Compras from './pages/Compras';
 
 function App() {
   const [id, setId] = useState('');
@@ -39,7 +41,7 @@ function App() {
         <HashRouter basename='products'>
           <Header MostrarMenu={MostrarMenu} menu={menu}/>
           
-        { menu && <MenuHamburguesa MostrarMenu={MostrarMenu}/>}
+          { menu && <MenuHamburguesa MostrarMenu={MostrarMenu}/>}
 
           <Routes>
 
@@ -49,6 +51,9 @@ function App() {
 
             <Route path='/crear-cuenta' element={<CrearCuenta/>} />
             <Route path='/ingresar-cuenta' element={<IngresarCuenta/>} />
+
+            <Route path='/cuenta' element={<CuentaUsuario/>}/>
+            <Route path='/compras' element={<Compras/>}/>
 
             <Route path='/detalle-producto/:id' element={<ProductoDescripcion id={id}/>} />
           </Routes>

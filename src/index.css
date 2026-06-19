@@ -47,7 +47,12 @@ img{
 .botones-generales{
   width: 7rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+}
+
+.botones-generales > button{
+  background-color: var(--bg);
+  border: solid 2px var(--border) ;
 }
 
 .enlace-carrito{
@@ -311,7 +316,7 @@ li > a{
   }
 
   .desktop{
-    display: block; 
+    display: flex; 
   }
 
   .botones-auth > .enlace-auths{

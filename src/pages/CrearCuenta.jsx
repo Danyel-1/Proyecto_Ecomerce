@@ -2,11 +2,11 @@ import React, { useContext} from 'react'
 import UsuarioContext from '../context/UsuariosContext'
 
 const CrearCuenta = () => {
-  const {botonSubmit, mensajeError, setNombre, errorNombre, setEmail, errorEmail, setPassword, errorPassword, validarDatos, mandarDatos} = useContext(UsuarioContext);
+  const {botonSubmit, mensajeError, setMensajeError, setNombre, errorNombre, setEmail, errorEmail, setPassword, errorPassword, validarDatos, mandarDatos} = useContext(UsuarioContext);
 
   return (
     <section className='formulario-ingreso'>
-      <h1>Ingresa un correo electronico y una contrasena</h1>
+      <h1>Para comprar ingresa un correo electronico y una contrasena</h1>
 
       <form onChange={validarDatos} onSubmit={mandarDatos}>
         <label htmlFor="nombre">Nombre</label>
@@ -42,15 +42,13 @@ const CrearCuenta = () => {
         placeholder='******'
         onChange={(e) => setPassword(e.target.value)}
         required/>
-        {errorPassword}
+        <p>{errorPassword}</p>
 
         <div className='botones'>
           <button  type='submit' disabled={!botonSubmit}>Continuar</button>
         </div> 
       </form>
-
-      <div>{mensajeError}</div>
-
+      
     </section>
   )
 }

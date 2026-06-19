@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import UsuarioContext from '../context/UsuariosContext';
 
 const IngresarCuenta = () => {
-  const {setEmail, botonSubmit, setPassword, mensajeError, loguearUsusario, validarDatos} = useContext(UsuarioContext);
+  const {setEmail, botonSubmit, errorEmail, errorPassword, setPassword, mensajeError, loguearUsusario, validarDatos} = useContext(UsuarioContext);
 
   return (
     <section className='formulario-ingreso'>
@@ -19,6 +19,7 @@ const IngresarCuenta = () => {
         placeholder='correo@correo.com'
         onChange={(e) => setEmail(e.target.value)}
         required/>
+        {errorEmail}
         <br />
 
         <label htmlFor="password">Contrasena</label>
@@ -30,12 +31,14 @@ const IngresarCuenta = () => {
         placeholder='******'
         onChange={(e) => setPassword(e.target.value)}
         required/>
+        {errorPassword}
 
         <div className='botones'>
           <button  type='submit' disabled={!botonSubmit}>Continuar</button>
         </div>
       </form>
 
+      {mensajeError}
     </section>
   )
 }

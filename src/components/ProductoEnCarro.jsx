@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const ProductoEnCarro = ({el, ActualizarCantidad, ActualizarPrecio, EliminarProducto, ActualizarIndicador}) => {
+const ProductoEnCarro = ({el, ActualizarCantidad, GuardarCarrito,ActualizarPrecio, EliminarProducto, ActualizarIndicador}) => {
     const {tl, img, precio, cantidad, id} = el;
     const [cantProd, setCantProd] = useState(cantidad);
 
@@ -9,6 +9,7 @@ const ProductoEnCarro = ({el, ActualizarCantidad, ActualizarPrecio, EliminarProd
     ActualizarCantidad(id, 's');
     ActualizarPrecio();
     ActualizarIndicador();
+    GuardarCarrito();
   };
 
   const resta = () =>{
@@ -21,10 +22,12 @@ const ProductoEnCarro = ({el, ActualizarCantidad, ActualizarPrecio, EliminarProd
     }
     ActualizarPrecio();
     ActualizarIndicador();
+    GuardarCarrito();
   };
 
   const Eliminar = () =>{
     EliminarProducto(id);
+    GuardarCarrito();
   }
 
   return (
