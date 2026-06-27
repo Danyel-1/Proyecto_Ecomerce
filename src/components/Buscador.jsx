@@ -1,27 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
+import ProductosContext from '../context/ProductosContext';
 
-const productoBuscar = ``;
-
-const Buscador = ({DetallesInfo}) => {
-    const [producto, setProducto] = useState(productoBuscar);
-
-    const handleChange = (e) =>{
-        setProducto(e.target.value);
-    }
-
-    const handleSubmit = (e)=>{
-        e.preventDefault();
-
-        DetallesInfo(producto);
-    }
-
+const Buscador = () => {
+  const {handleBusqueda, setBusqueda, busqueda} = useContext(ProductosContext);
 
   return (
     <section className='buscador'>
-        <button onClick={handleSubmit}>🔍</button>
-        <input type="text" name='product' placeholder='Buscar producto' autoComplete='off' onChange={handleChange} value={producto}/>
+        <button onClick={handleBusqueda}>🔍</button>
+        <input type="text" name='product' placeholder='Buscar producto' autoComplete='off' onChange={(e)=>setBusqueda(e.target.value)} value={busqueda}/>
     </section>
-  );
+  ); 
 }
 
 export default Buscador;

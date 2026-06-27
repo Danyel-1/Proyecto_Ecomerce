@@ -11,6 +11,7 @@ import IngresarCuenta from './pages/IngresarCuenta';
 import MenuHamburguesa from './components/MenuHamburguesa';
 import CuentaUsuario from './pages/CuentaUsuario';
 import Compras from './pages/Compras';
+import { ProductosProvider } from './context/ProductosContext';
 
 function App() {
   const [id, setId] = useState('');
@@ -36,10 +37,11 @@ function App() {
 
   return (
     <>
+    <ProductosProvider>
     <UsuarioProvider>
       <CarritoPovider>
         <HashRouter basename='products'>
-          <Header MostrarMenu={MostrarMenu} menu={menu}/>
+          <Header MostrarMenu={MostrarMenu}  menu={menu}/>
           
           { menu && <MenuHamburguesa MostrarMenu={MostrarMenu}/>}
 
@@ -60,6 +62,7 @@ function App() {
         </HashRouter>
       </CarritoPovider>
     </UsuarioProvider>
+    </ProductosProvider>
     </>
   )
 }

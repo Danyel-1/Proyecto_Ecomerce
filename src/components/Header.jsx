@@ -12,7 +12,7 @@ const Header = ({MostrarMenu, menu}) => {
   
   useEffect(()=>{
     let totalPiezas = carrito.reduce((acumulador, actual) => acumulador + actual.datos.cantidad, 0);
-    
+     
     setPiezas(totalPiezas);
   },[carrito, numArticulo]);  
 
@@ -20,9 +20,11 @@ const Header = ({MostrarMenu, menu}) => {
     <header>
         <Link to='/'>
           <picture>
-              <img src='/patoLogo.png' alt="Logotipo empresa" />
+              <img src='/patoLogo.png' alt="Logotipo pato" />
           </picture>
         </Link>
+
+        <Buscador />
 
         <div className="botones-generales movil">
           <button onClick={MostrarMenu}>{menu ? `X` : `☰`}</button>
@@ -35,9 +37,9 @@ const Header = ({MostrarMenu, menu}) => {
           <div className="botones-generales desktop"> 
             <section className='botones-auth'>
               <Link  to="/cuenta" className='enlace-auths'>Cuenta</Link>
-
+ 
               
-              <button onClick={handleLogout}>Logout</button>
+              <button className='enlace-auths' onClick={handleLogout}>Logout</button>
 
               <Link to="/carrito" className='enlace-carrito'>{ carrito.length > 0 && <div className='indicador-carrito'>{piezas}</div>}🛒</Link> 
             </section>
@@ -52,7 +54,6 @@ const Header = ({MostrarMenu, menu}) => {
             </section>
           </div>
         }
-
     </header>
   )
 }

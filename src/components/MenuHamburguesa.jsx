@@ -4,7 +4,6 @@ import UsuarioContext from '../context/UsuariosContext'
 
 const MenuHamburguesa = ({MostrarMenu}) => { 
     const {user, handleLogout, datosUsuarioLogueado} = useContext(UsuarioContext);
-    console.log(datosUsuarioLogueado);
     
   return (
     <nav className='nav-de-auth movil'>
@@ -32,7 +31,7 @@ const MenuHamburguesa = ({MostrarMenu}) => {
                 </div>}
                 {user?
                     <div className='mensajes'>
-                        <h4>Bienvenido {`'${datosUsuarioLogueado.name}'`}</h4>
+                        <h4>Bienvenido {datosUsuarioLogueado.name}</h4>
                         
                     </div>
                     :

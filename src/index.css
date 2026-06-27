@@ -127,6 +127,7 @@ img{
 /*Buscador =================================================*/
 .buscador{
   text-align: center;
+  display: flex;
 }
 
 input{
