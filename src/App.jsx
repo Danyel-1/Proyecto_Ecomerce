@@ -12,15 +12,29 @@ import MenuHamburguesa from './components/MenuHamburguesa';
 import CuentaUsuario from './pages/CuentaUsuario';
 import Compras from './pages/Compras';
 import { ProductosProvider } from './context/ProductosContext';
+import Notificacion from './components/Notificacion';
 
 function App() {
   const [id, setId] = useState('');
   const [menu , setMenu] = useState(false);
+  const [notificacion, setNotificacion] = useState(false);
+  const [message, setMessage] = useState('');
+  const [color, setColor] = useState('#f0e800');
 
   const handleResize = () =>{
     if (window.innerWidth > 720) {
       setMenu(false);
     }
+  }
+
+  const handleNotificacion = (mensaje, fondo) =>{
+    setColor(fondo);
+    setMessage(mensaje);
+    setNotificacion(true);
+    
+    setTimeout(()=>{
+      setNotificacion(false);
+    },1500);
   }
 
   useEffect(()=>{
@@ -37,32 +51,34 @@ function App() {
 
   return (
     <>
-    <ProductosProvider>
-    <UsuarioProvider>
-      <CarritoPovider>
-        <HashRouter basename='products'>
-          <Header MostrarMenu={MostrarMenu}  menu={menu}/>
-          
-          { menu && <MenuHamburguesa MostrarMenu={MostrarMenu}/>}
+      <ProductosProvider>
+        <UsuarioProvider>
+          <CarritoPovider>
+            <HashRouter basename='products'>
+              <Header MostrarMenu={MostrarMenu}  menu={menu}/>
+              
+              { menu && <MenuHamburguesa MostrarMenu={MostrarMenu}/>}
 
-          <Routes>
+              {notificacion && <Notificacion color={color} message={message}/>}
 
-            <Route path='/' element={<PatoLibre menu={menu} idProducto={idProducto}/>}/>
+              <Routes>
 
-            <Route path='/carrito' element={<CarritoCompras />}/>
+                <Route path='/' element={<PatoLibre handleNotificacion={handleNotificacion} idProducto={idProducto}/>}/>
 
-            <Route path='/crear-cuenta' element={<CrearCuenta/>} />
-            <Route path='/ingresar-cuenta' element={<IngresarCuenta/>} />
+                <Route path='/carrito' element={<CarritoCompras />}/>
 
-            <Route path='/cuenta' element={<CuentaUsuario/>}/>
-            <Route path='/compras' element={<Compras/>}/>
+                <Route path='/crear-cuenta' element={<CrearCuenta handleNotificacion={handleNotificacion}/>} />
+                <Route path='/ingresar-cuenta' element={<IngresarCuenta/>} />
 
-            <Route path='/detalle-producto/:id' element={<ProductoDescripcion id={id}/>} />
-          </Routes>
-        </HashRouter>
-      </CarritoPovider>
-    </UsuarioProvider>
-    </ProductosProvider>
+                <Route path='/cuenta' element={<CuentaUsuario/>}/>
+                <Route path='/compras' element={<Compras/>}/>
+
+                <Route path='/detalle-producto/:id' element={<ProductoDescripcion id={id}/>} />
+              </Routes>
+            </HashRouter>
+          </CarritoPovider>
+        </UsuarioProvider>
+      </ProductosProvider>
     </>
   )
 }

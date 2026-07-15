@@ -1,8 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import UsuarioContext from '../context/UsuariosContext';
+import { useNavigate } from 'react-router-dom';
 
 const IngresarCuenta = () => {
-  const {setEmail, botonSubmit, errorEmail, errorPassword, setPassword, mensajeError, loguearUsusario, validarDatos} = useContext(UsuarioContext);
+  const {setEmail, botonSubmit, errorEmail, errorPassword, setPassword, mensajeError, user,loguearUsusario, validarDatos} = useContext(UsuarioContext);
+
+  const navigate = useNavigate();
+
+  const handleNavigate =()=>{
+    if (!user) {
+      console.log(mensajeError);
+    }
+  }
 
   return (
     <section className='formulario-ingreso'>
@@ -34,7 +43,7 @@ const IngresarCuenta = () => {
         {errorPassword}
 
         <div className='botones'>
-          <button  type='submit' disabled={!botonSubmit}>Continuar</button>
+          <button  type='submit' onClick={handleNavigate} disabled={!botonSubmit}>Continuar</button>
         </div>
       </form>
 

@@ -21,7 +21,7 @@ const ProductosProvider = ({children}) =>{
     let aux = [];
     
     const paginacion =()=>{
-      if (datos && productos.length === 0) {
+      if (datos ) {
         setNumPaginas(Math.ceil(datos.length / 8))
         aux = datos.slice(off, limit);
         setProductosData(aux);

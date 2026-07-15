@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import CarritoContext from '../context/CarritoContext';
 
-const Producto = ({el, idProducto}) => {
+const Producto = ({el, idProducto, handleNotificacion}) => {
   const { images, price, slug, title, id} = el;
   const {AgregarCarrito , ActualizarIndicador} = useContext(CarritoContext);
   let navigate = useNavigate();
-
+ 
   const Carrito = () =>{
     AgregarCarrito({
       id: id,
@@ -16,6 +16,7 @@ const Producto = ({el, idProducto}) => {
       cantidad: 1,
     })
     ActualizarIndicador();
+    handleNotificacion(`${title} se agrego al carrito`, "#3cf000d7");
   }
 
   const handleClick = ()=>{
@@ -34,7 +35,7 @@ const Producto = ({el, idProducto}) => {
 
         <section className="botones">
           <button onClick={handleClick}>More details</button>
-          <button onClick={Carrito}>ADD TO CAR</button>
+          <button   onClick={Carrito}>ADD TO CAR</button>
         </section>
       </article>
   )

@@ -1,9 +1,9 @@
 import React, { useContext} from 'react'
 import UsuarioContext from '../context/UsuariosContext'
 
-const CrearCuenta = () => {
+const CrearCuenta = ({handleNotificacion}) => {
   const {botonSubmit, mensajeError, setMensajeError, setNombre, errorNombre, setEmail, errorEmail, setPassword, errorPassword, validarDatos, mandarDatos} = useContext(UsuarioContext);
-
+  
   return (
     <section className='formulario-ingreso'>
       <h1>Para comprar ingresa un correo electronico y una contrasena</h1>
@@ -45,7 +45,7 @@ const CrearCuenta = () => {
         <p>{errorPassword}</p>
 
         <div className='botones'>
-          <button  type='submit' disabled={!botonSubmit}>Continuar</button>
+          <button  type='submit' disabled={!botonSubmit} onClick={()=>{handleNotificacion('Usuario Creado')}}>Continuar</button>
         </div> 
       </form>
       

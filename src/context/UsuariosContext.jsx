@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UsuarioContext = createContext();
 
@@ -117,8 +118,6 @@ const UsuarioProvider = ({children})=>{
             const data = await responce.json();
 
             setUser(data);
-
-            console.log(data);
             
             window.localStorage.setItem('user', JSON.stringify(data));   
 

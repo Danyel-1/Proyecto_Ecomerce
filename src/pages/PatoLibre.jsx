@@ -6,21 +6,21 @@ import MenuHamburguesa from '../components/MenuHamburguesa';
 import UsuarioContext from '../context/UsuariosContext';
 import ProductosContext from '../context/ProductosContext';
 
-const PatoLibre = ({idProducto}) => {   
+const PatoLibre = ({idProducto, handleNotificacion}) => {   
 
   const {productos, pagina, numPaginas, paginaActual, productosData} = useContext(ProductosContext);
 
-  return ( 
+  return (  
     <> 
       {/*productos.length === 0 ? productosData.length > 0 ? <Catalogo idProducto={idProducto} productos={productosData} resultBuscator={resultBuscator}/> : '' : <Catalogo idProducto={idProducto} productos={productos} resultBuscator={resultBuscator}/>*/}
 
       {productosData.length > 0 ? 
-      <Catalogo idProducto={idProducto} productos={productosData}/> 
+      <Catalogo idProducto={idProducto} productos={productosData} handleNotificacion={handleNotificacion}/> 
       : 
-      <Catalogo idProducto={idProducto} productos={productos}/>
+      <Catalogo idProducto={idProducto} productos={productos} handleNotificacion={handleNotificacion}/>
       }
 
-      {productosData && <Paginacion paginaActual={paginaActual} numPages={numPaginas} pagina={pagina} />}
+      {productosData.length > 0 && <Paginacion paginaActual={paginaActual} numPages={numPaginas} pagina={pagina} />}
     </>
   )
 }

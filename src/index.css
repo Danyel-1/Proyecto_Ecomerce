@@ -11,6 +11,7 @@
   --border : #929292;
   --colorBoton : #0454ff;
   --letraSecundaria: #fff;
+  --notificaciones: linear-gradient(to bottom right, #f0e800, #3f87a6);
 }
 
 body {
@@ -294,12 +295,14 @@ li > a{
   margin-top: 7rem;
 }
 
-/*Ingresar Cuenta ================================================*/
+/*Ingresar Cuenta ===============================================*/
 .formulario-ingreso{
   display: block;
   width: 80%;
   margin: 6rem auto;
 }
+
+/*Notificaciones ============================================== */
 
 
 /*Medias Query ================================================*/
