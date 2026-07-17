@@ -68,7 +68,7 @@ function App() {
                 <Route path='/carrito' element={<CarritoCompras />}/>
 
                 <Route path='/crear-cuenta' element={<CrearCuenta handleNotificacion={handleNotificacion}/>} />
-                <Route path='/ingresar-cuenta' element={<IngresarCuenta/>} />
+                <Route path='/ingresar-cuenta' element={<IngresarCuenta handleNotificacion={handleNotificacion}/>} />
 
                 <Route path='/cuenta' element={<CuentaUsuario/>}/>
                 <Route path='/compras' element={<Compras/>}/>
