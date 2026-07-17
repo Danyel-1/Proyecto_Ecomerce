@@ -112,7 +112,7 @@ const UsuarioProvider = ({children})=>{
                         
             if (!responce.ok) {
                 setMensajeError(`Responce status: ${responce.status}`);
-                throw new Error(`Responce status: ${responce.status}`)
+                throw new Error(`Responce status: ${responce.status}`);
             }
             
             const data = await responce.json();

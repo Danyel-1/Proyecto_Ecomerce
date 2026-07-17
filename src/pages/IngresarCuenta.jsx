@@ -2,16 +2,23 @@ import React, { useContext, useEffect } from 'react'
 import UsuarioContext from '../context/UsuariosContext';
 import { useNavigate } from 'react-router-dom';
 
-const IngresarCuenta = () => {
+const IngresarCuenta = ({handleNotificacion}) => {
   const {setEmail, botonSubmit, errorEmail, errorPassword, setPassword, mensajeError, user,loguearUsusario, validarDatos} = useContext(UsuarioContext);
 
   const navigate = useNavigate();
 
-  const handleNavigate =()=>{
-    if (!user) {
-      console.log(mensajeError);
+  useEffect(()=>{
+    const handleLogIn = ()=>{
+      if (!user) {
+        handleNotificacion("Usuario no encontrado" , "#fe0b0b");
+      }else{
+        navigate("/");
+        handleNotificacion("Bienvenido" , "#0b48fe")
+      }
     }
-  }
+
+    handleLogIn()
+  },[user, mensajeError])
 
   return (
     <section className='formulario-ingreso'>
@@ -43,7 +50,12 @@ const IngresarCuenta = () => {
         {errorPassword}
 
         <div className='botones'>
-          <button  type='submit' onClick={handleNavigate} disabled={!botonSubmit}>Continuar</button>
+          <button  type='submit' 
+          onClick={()=>{
+            setEmail("");
+            setPassword("");
+          }}
+          disabled={!botonSubmit}>Continuar</button>
         </div>
       </form>
 

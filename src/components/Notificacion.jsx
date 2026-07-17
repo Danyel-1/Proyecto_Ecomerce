@@ -7,11 +7,17 @@ const Notificacion = ({message, color}) => {
         position:"fixed",
         right: "3%",
         color: "#ffffff",
+        borderRadius: "10px"
+    }
+
+    const parrafo ={
+        fontWeight: "600",
+        margin: "10px"
     }
 
    return (
     <div style={estilo}>
-        <p>{message}</p>
+        <p style={parrafo}>{message}</p>
     </div>
     )
 }
