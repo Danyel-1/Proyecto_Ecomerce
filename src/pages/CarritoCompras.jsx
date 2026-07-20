@@ -2,19 +2,29 @@ import React, { useContext, useEffect, useState } from 'react'
 import CarritoContext from '../context/CarritoContext'
 import ProductoEnCarro from '../components/ProductoEnCarro';
 import UsuarioContext from '../context/UsuariosContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
  
-const CarritoCompras = () => {
-  const {carrito, AgregarCarrito, GuardarCarrito,ActualizarCantidad, EliminarProducto, ActualizarIndicador} = useContext(CarritoContext);
+const CarritoCompras = ({handleNotificacion}) => {
+  const {carrito, AgregarCarrito, GuardarCarrito,ActualizarCantidad, EliminarProducto, ActualizarIndicador, RealizarCompra} = useContext(CarritoContext);
   const {user} = useContext(UsuarioContext);
 
   const [costoTotal, setCostoTotal] = useState(0);
 
+  const navigate = useNavigate();
+
   useEffect(()=>{
-    let total = carrito.reduce((acumulador, actual) => acumulador + (actual.datos.precio * actual.datos.cantidad), 0);
+    if(carrito.length > 0){
+      let total = carrito.reduce((acumulador, actual) => acumulador + (actual.datos.precio * actual.datos.cantidad), 0);
+      setCostoTotal(total);
+    }
     
-    setCostoTotal(total);
   },[carrito]);
+
+  const handleCompra = ()=>{
+    RealizarCompra();
+    handleNotificacion("Gracias por su compra ;3", "#29ff19");
+    setCostoTotal(0);
+  }
 
   const ActualizarPrecio = () =>{
     let total = carrito.reduce((acumulador, actual) => acumulador + (actual.datos.precio * actual.datos.cantidad), 0);
@@ -48,7 +58,7 @@ const CarritoCompras = () => {
         <h2>Order Summary</h2>
         <p>Total: {costoTotal}</p>
         {
-          user ? <button>Checkout</button> 
+          user ? <button onClick={handleCompra}>Checkout</button> 
           : 
           <Link to="/crear-cuenta"> Checkout</Link>
         }

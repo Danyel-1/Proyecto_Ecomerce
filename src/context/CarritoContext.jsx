@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CarritoContext = createContext();
 
@@ -58,8 +59,13 @@ const CarritoPovider = ({children}) =>{
         
         setNumArticulo(totalPiezas); 
     }
+
+    const RealizarCompra = () =>{
+        setCarrito([]);
+        window.localStorage.removeItem('carrito');
+    }
     
-    const data = {carrito,numArticulo, ActualizarIndicador,AgregarCarrito, ActualizarCantidad, GuardarCarrito,EliminarProducto};
+    const data = {carrito,numArticulo, ActualizarIndicador,AgregarCarrito, ActualizarCantidad, GuardarCarrito,EliminarProducto, RealizarCompra};
 
    return <CarritoContext.Provider value={data}>{children}</CarritoContext.Provider>
 }

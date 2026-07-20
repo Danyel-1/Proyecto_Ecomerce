@@ -18,7 +18,7 @@ const IngresarCuenta = ({handleNotificacion}) => {
     }
 
     handleLogIn()
-  },[user, mensajeError])
+  },[user])
 
   return (
     <section className='formulario-ingreso'>
@@ -51,15 +51,10 @@ const IngresarCuenta = ({handleNotificacion}) => {
 
         <div className='botones'>
           <button  type='submit' 
-          onClick={()=>{
-            setEmail("");
-            setPassword("");
-          }}
           disabled={!botonSubmit}>Continuar</button>
         </div>
       </form>
 
-      {mensajeError}
     </section>
   )
 }
