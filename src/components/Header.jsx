@@ -11,9 +11,11 @@ const Header = ({MostrarMenu, menu}) => {
   const [piezas, setPiezas] = useState(numArticulo);
   
   useEffect(()=>{
-    let totalPiezas = carrito.reduce((acumulador, actual) => acumulador + actual.datos.cantidad, 0);
+    if(carrito.length > 0){
+      let totalPiezas = carrito.reduce((acumulador, actual) => acumulador + actual.datos.cantidad, 0);
      
-    setPiezas(totalPiezas);
+      setPiezas(totalPiezas);
+    }
   },[carrito, numArticulo]);  
 
   return (

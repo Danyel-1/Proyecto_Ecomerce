@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const UsuarioContext = createContext();
 
@@ -102,11 +101,11 @@ const UsuarioProvider = ({children})=>{
 
         try {
             const responce = await fetch("https://api.escuelajs.co/api/v1/auth/login", {
-                method: "POST",
-                headers: {'Content-Type' : 'application/json'},
-                body: JSON.stringify({
-                email: email,
-                password: password,
+                    method: "POST",
+                    headers: {'Content-Type' : 'application/json'},
+                    body: JSON.stringify({
+                    email: email,
+                    password: password,
                 })
             });
                         

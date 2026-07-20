@@ -65,7 +65,7 @@ function App() {
 
                 <Route path='/' element={<PatoLibre handleNotificacion={handleNotificacion} idProducto={idProducto}/>}/>
 
-                <Route path='/carrito' element={<CarritoCompras />}/>
+                <Route path='/carrito' element={<CarritoCompras handleNotificacion={handleNotificacion} />}/>
 
                 <Route path='/crear-cuenta' element={<CrearCuenta handleNotificacion={handleNotificacion}/>} />
                 <Route path='/ingresar-cuenta' element={<IngresarCuenta handleNotificacion={handleNotificacion}/>} />

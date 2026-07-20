@@ -5,6 +5,7 @@
   --mono: ui-monospace, Consolas, monospace;
   
   --bg: #FFF81A;
+  --bgform: #0a09091d;
   --bgCarro : #6459f8;
   --bgInput : #f6f6f6;
   --fondoGris: #d7d7d7;
@@ -133,7 +134,7 @@ img{
 
 input{
   padding-left: 1rem;
-  width: 100%;
+  width: 95%;
   color: var(--color_letra);
   outline: none;
 }
@@ -297,7 +298,9 @@ li > a{
 
 /*Ingresar Cuenta ===============================================*/
 .formulario-ingreso{
-  display: block;
+  background-color: var(--bgform);
+  padding: 1rem;
+  border-radius: 10px;
   width: 80%;
   margin: 6rem auto;
 }
@@ -313,6 +316,10 @@ li > a{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
+  }
+
+  .formulario-ingreso{
+    width: 50%;
   }
 
   .product-desc{
