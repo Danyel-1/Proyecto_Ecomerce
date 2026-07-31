@@ -34,8 +34,8 @@ const Producto = ({el, idProducto, handleNotificacion}) => {
         </div>
 
         <section className="botones">
-          <button onClick={handleClick}>More details</button>
-          <button   onClick={Carrito}>ADD TO CAR</button>
+          <button   onClick={Carrito}>Agregar al carrito</button>
+          <button style={{background :" #fff", color:"blue"}} onClick={handleClick}>Details</button>
         </section>
       </article>
   )

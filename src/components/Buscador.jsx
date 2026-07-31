@@ -7,6 +7,7 @@ const Buscador = () => {
   return (
     <section className='buscador'>
         <button onClick={handleBusqueda}>🔍</button>
+        
         <input type="text" name='product' placeholder='Buscar producto' autoComplete='off' onChange={(e)=>setBusqueda(e.target.value)} value={busqueda}/>
     </section>
   ); 
